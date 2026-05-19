@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Models;
 using Repository.Exceptions;
 
@@ -71,7 +72,7 @@ public class SalaDB
                     reader.GetInt32(0),
                     reader.GetString(1),
                     reader.IsDBNull(2) ? null : reader.GetString(2),
-                    reader.GetDateTime(4)
+                    reader.GetDateTime(3)
                 );
                 return sala;
             }

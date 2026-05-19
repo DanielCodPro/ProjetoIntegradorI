@@ -10,16 +10,19 @@ public class DB
     public static bool conectado = false;
     
     //Funcão deve rodar apenas uma vez ao inciar o game e TEM QUE DAR CERTO
-    public static async Task Connect()
+    public static async Task Connect(string ipServidor = "127.0.0.1")
     {
         if (conectado)
         {
             return;
         }
-        //Inicia Database Postgres Portable (Somente Windows)
-        StartDatabase();
         
-        var connectionString = "Host=127.0.0.1;Port=5432;Username=postgres;Database=postgres;Password="; // login do banco e local doo banco na rede
+            //Inicia Database Postgres Portable (Somente Windows)
+            isLocal(ipServidor, StartDatabase);//Somente Ip local roda
+        
+        
+        
+        var connectionString = $"Host={ipServidor};Port=5432;Username=postgres;Database=postgres;Password="; // login do banco e local doo banco na rede
         dataSource = NpgsqlDataSource.Create(connectionString); // Inicializa a conexão
 
         int tentativas = 0;
@@ -30,7 +33,7 @@ public class DB
                 //tenta conectar
                 await using var connection = await dataSource.OpenConnectionAsync();
                 //Cria Tabelas
-                await Setup();
+                await isLocalAsync(ipServidor,Setup); //Somente Em IP local de Conexão
                 conectado = true;
             }
             catch (Exception e)
@@ -53,6 +56,8 @@ public class DB
             throw new DatabaseNotConnectedException();
         }   
     }
+
+    
     private static async Task Setup()
     {
         await using var cmd = dataSource.CreateCommand(@"
@@ -111,6 +116,8 @@ public class DB
         if (!File.Exists(Path.Combine(dataPath, "PG_VERSION")))
         {
             InitializeDatabase(binPath, dataPath);
+            ConfigurarPostgresParaRedeLocal(dataPath);
+            
         }
         
         string[] folders = { "pg_tblspc", "pg_replslot", "pg_snapshots", "pg_commit_ts" };
@@ -156,6 +163,40 @@ public class DB
             {
                 throw new Exception($"InitDB falhou com código {proc.ExitCode}");
             }
+        }
+    }
+    private static void ConfigurarPostgresParaRedeLocal(string dataPath)
+    {
+        // 1. Libera para escutar todas as placas de rede da máquina (substitui localhost por *)
+        string configFile = Path.Combine(dataPath, "postgresql.conf");
+        if (File.Exists(configFile))
+        {
+            string conteudo = File.ReadAllText(configFile);
+            conteudo = conteudo.Replace("#listen_addresses = 'localhost'", "listen_addresses = '*'");
+            conteudo = conteudo.Replace("listen_addresses = 'localhost'", "listen_addresses = '*'");
+            File.WriteAllText(configFile, conteudo);
+        }
+
+        // 2. Permite que qualquer IP IPv4 se autentique sem travar (regrade confiança para LAN de escola)
+        string hbaFile = Path.Combine(dataPath, "pg_hba.conf");
+        if (File.Exists(hbaFile))
+        {
+            string regrasDeAcesso = "\nhost    all             all             0.0.0.0/0               trust\n";
+            File.AppendAllText(hbaFile, regrasDeAcesso);
+        }
+    }
+    private static void isLocal(string ipServidor, Action task)
+    {
+        if (ipServidor == "127.0.0.1" || ipServidor == "localhost")
+        {
+            task.Invoke();
+        }
+    }
+    private static async Task isLocalAsync(string ipServidor, Func<Task> funcaoAssincrona)
+    {
+        if (ipServidor == "127.0.0.1" || ipServidor == "localhost")
+        {
+            await funcaoAssincrona.Invoke();
         }
     }
 }
