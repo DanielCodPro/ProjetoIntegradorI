@@ -123,7 +123,7 @@ public class AlunoDB
         DB.testConnection();
 
         await using var cmd = DB.dataSource.CreateCommand(
-            "SELECT id, username, name, created_at, id_sala, turma, points, level, xp, stars FROM alunos WHERE username = $1");
+            "SELECT id, username, name, created_at, id_sala,password, turma, points, level, xp, stars FROM alunos WHERE username = $1");
         cmd.Parameters.AddWithValue(username);
         await using var reader = await cmd.ExecuteReaderAsync();
 
@@ -136,12 +136,14 @@ public class AlunoDB
                 reader.GetDateTime(3)
             )
             {
+                
                 id_sala = reader.IsDBNull(4) ? null : reader.GetInt32(4),
-                turma = reader.IsDBNull(5) ? null : reader.GetString(5),
-                points = reader.GetInt32(6),
-                level = reader.GetInt32(7),
-                xp = reader.GetInt32(8),
-                stars = reader.GetInt32(9)
+                password = reader.IsDBNull(5) ? null : reader.GetString(5),
+                turma = reader.IsDBNull(6) ? null : reader.GetString(6),
+                points = reader.GetInt32(7),
+                level = reader.GetInt32(8),
+                xp = reader.GetInt32(9),
+                stars = reader.GetInt32(10)
             };
         }
         throw new ResourceNotFoundException("Nenhum aluno com este nome");
