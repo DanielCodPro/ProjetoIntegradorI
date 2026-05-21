@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://crc51eppbcbni"]
+
+[ext_resource type="Texture2D" uid="uid://bp34qwirevo1a" path="res://Assets/Background/CachoeiraMontanha_0.png" id="1_4kb28"]
+[ext_resource type="Script" uid="uid://pkq0r5tt0o36" path="res://Scripts/InitialScene.cs" id="1_wyath"]
+[ext_resource type="Texture2D" uid="uid://bf6vv04curr1k" path="res://Assets/Background/CachoeiraMontanha_1.png" id="2_wyath"]
+[ext_resource type="Texture2D" uid="uid://blg3xohrv2oph" path="res://Assets/Background/CachoeiraMontanha_2.png" id="3_t7kt1"]
+[ext_resource type="Texture2D" uid="uid://4u3s3btqy8pv" path="res://Assets/Background/CachoeiraMontanha_3.png" id="4_5w8kq"]
+[ext_resource type="Texture2D" uid="uid://c48wfnfr2hf8e" path="res://Assets/Background/CachoeiraMontanha_4.png" id="5_b76gm"]
+[ext_resource type="Texture2D" uid="uid://c22yjwf0gi37t" path="res://Assets/Background/CachoeiraMontanha_5.png" id="6_cnqdl"]
+[ext_resource type="Texture2D" uid="uid://be8majposmelc" path="res://Assets/Background/CachoeiraMontanha_6.png" id="7_1rrj7"]
+[ext_resource type="Texture2D" uid="uid://bl4tcr275k464" path="res://Assets/Background/CachoeiraMontanha_7.png" id="8_xgool"]
+[ext_resource type="AudioStream" uid="uid://dmcih8fodumuo" path="res://Assets/Musics/InitialMenu/AdhesiveWombat - Night Shade.mp3" id="10_t7kt1"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_005ff"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4kb28")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_wyath")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_t7kt1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5w8kq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_b76gm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cnqdl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1rrj7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xgool")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wyath"]
+font_size = 56
+font_color = Color(1, 1, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.2627451)
+shadow_offset = Vector2(4.285, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyath"]
+bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+border_width_left = 26
+border_width_top = 26
+border_width_right = 26
+border_width_bottom = 26
+border_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+
+[node name="InitialScene" type="MarginContainer" unique_id=1515314751]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 23
+script = ExtResource("1_wyath")
+
+[node name="BackgroundInicial" type="AnimatedSprite2D" parent="." unique_id=254432943]
+modulate = Color(0.3665946, 0.3665946, 0.36659458, 1)
+self_modulate = Color(0.9515795, 0.95157963, 0.9515795, 1)
+position = Vector2(576.0001, 323.75)
+scale = Vector2(1.0000001, 1.1544642)
+sprite_frames = SubResource("SpriteFrames_005ff")
+frame = 7
+frame_progress = 0.4374605
+
+[node name="Label" type="Label" parent="." unique_id=2109392080]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "HACKOON GAME HUB"
+label_settings = SubResource("LabelSettings_wyath")
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1276313470]
+self_modulate = Color(0.5411765, 0.5254902, 0.5294118, 0.6156863)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyath")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1513776413]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 33
+alignment = 1
+
+[node name="Button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1337129972]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "INICIAR JOGO"
+
+[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1625983789]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "ENTRAR NO JOGO"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=748139748]
+stream = ExtResource("10_t7kt1")
+volume_db = -20.0
+autoplay = true

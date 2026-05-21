@@ -11,9 +11,15 @@ config_version=5
 [application]
 
 config/name="game"
-run/main_scene="uid://da5xa0ttx1tmf"
+run/main_scene="uid://crc51eppbcbni"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_height=647
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
 
 [dotnet]
 
