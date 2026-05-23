@@ -10,32 +10,15 @@ public class ProfessorService
 {
     public static async void RegisterProfessor(Professor professor)
     {
-        try
-        {
-            professor.password = BCrypt.Net.BCrypt.HashPassword(professor.password);
+             professor.password = BCrypt.Net.BCrypt.HashPassword(professor.password);
             await ProfessorDB.Create(professor);
-        }
-        catch (InvalidParameterException ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-        catch (ResourceAlreadyExistsException ex)
-        {
-            Console.WriteLine(ex.Message);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-        }
-        
     }
 
     public static async Task<Professor?> LoginProfessor(string email, string password)
     {
 
         Professor professor;
-        try
-        {
+       
             professor = await ProfessorDB.GetProfessorByEmail(email);
             bool logged = SecurityService.ValidarSenha(password, professor.password);
             if (!logged)
@@ -44,18 +27,6 @@ public class ProfessorService
             }
 
             return professor;
-
-        }
-        catch (ResourceNotFoundException e)
-        {
-            Console.WriteLine(e.Message);
-            return null;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine("Erro Inesperado: " + e.Message);
-            return null;
-        }
     }
     
     public static async Task StartGameAsync()

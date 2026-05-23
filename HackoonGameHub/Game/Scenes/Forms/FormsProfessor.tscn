@@ -1,0 +1,104 @@
+[gd_scene format=3 uid="uid://56x2dhl200hb"]
+
+[ext_resource type="Script" uid="uid://vj6uxrr44gy0" path="res://Scripts/SceneControlls/FormsProfessor.cs" id="1_sod4u"]
+[ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="1_vhs78"]
+[ext_resource type="PackedScene" uid="uid://ietdf4bl0i6f" path="res://Scenes/Music/music_controll.tscn" id="2_lrydk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i05s"]
+bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+border_width_left = 13
+border_width_top = 13
+border_width_right = 13
+border_width_bottom = 13
+border_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Control" type="Control" unique_id=1962017348]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sod4u")
+
+[node name="InicialBackgroundNode" parent="." unique_id=864878345 instance=ExtResource("1_vhs78")]
+layout_mode = 1
+
+[node name="tituloLabel" type="Label" parent="." unique_id=977023826]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 30
+text = "Professores"
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=2022007553]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -148.5
+offset_right = 128.0
+offset_bottom = 148.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5i05s")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=802427831]
+layout_mode = 2
+theme_override_constants/separation = 13
+
+[node name="nomeLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=649953859]
+layout_mode = 2
+text = "Nome:"
+
+[node name="textNome" type="LineEdit" parent="PanelContainer/VBoxContainer" unique_id=532527686]
+layout_mode = 2
+placeholder_text = "Ex: João"
+
+[node name="emailLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=669858765]
+layout_mode = 2
+text = "Email:"
+
+[node name="textEmail" type="LineEdit" parent="PanelContainer/VBoxContainer" unique_id=1727262716]
+layout_mode = 2
+placeholder_text = "Ex: joao@gmail.com"
+
+[node name="senhaLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=211745546]
+layout_mode = 2
+text = "Senha:"
+
+[node name="textSenha" type="LineEdit" parent="PanelContainer/VBoxContainer" unique_id=1919983392]
+layout_mode = 2
+placeholder_text = "Ex: senha123"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=518570099]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="voltarButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1140414196]
+layout_mode = 2
+text = "VOLTAR"
+
+[node name="entrarButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=213316894]
+layout_mode = 2
+text = "ENTRAR"
+
+[node name="cadastrarButton" type="Button" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=668077981]
+layout_mode = 2
+text = "CADASTRAR"
+
+[node name="MusicControll" parent="." unique_id=665168816 instance=ExtResource("2_lrydk")]
+layout_mode = 1
+offset_top = -189.0
+offset_bottom = -189.0
+scale = Vector2(0.18, 0.18)

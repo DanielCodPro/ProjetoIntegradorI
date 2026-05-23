@@ -7,13 +7,14 @@ public class Professor : Usuario
     public string email { get; set; }
 
     // Construtor para criação de novo Professor
-    public Professor(string name, string email) : base(name)
+    public Professor(string name, string email, string password) : base(name)
     {
         if (string.IsNullOrWhiteSpace(email))
         {
             throw new Exception("Email obrigatório");
         }
         this.email = email.Trim();
+        this.password = password.Trim();
     }
 
     // Construtor para carregar Professor do Banco de Dados

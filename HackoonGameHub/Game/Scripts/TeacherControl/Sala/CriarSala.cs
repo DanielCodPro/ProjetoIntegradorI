@@ -1,5 +1,6 @@
 using Godot;
 using System;
+/*
 using Models;
 using Repository.Postgress;
 
@@ -15,3 +16,4 @@ public partial class CriarSala : Button
 		await SalaDB.Create(sala);
 	}
 }
+*/

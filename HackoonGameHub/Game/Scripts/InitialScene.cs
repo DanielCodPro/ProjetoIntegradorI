@@ -1,17 +1,51 @@
 using Godot;
 using System;
+using Service;
+
 
 public partial class InitialScene : Control
 {
-	// Called when the node enters the scene tree for the first time.
+	private Button btnStart;
+	private Button btnEnter;
+	
 	public override void _Ready()
 	{
-		var back = GetNode<AnimatedSprite2D>("BackgroundInicial");
-		back.Play("default");
+		btnStart = GetNode<Button>("PanelContainer/VBoxContainer/StartButton");
+		btnEnter = GetNode<Button>("PanelContainer/VBoxContainer/EnterButton");
+		
+		btnStart.Pressed += OnBtnStartPressed;
+		btnEnter.Pressed += OnBtnEnterPressed;
+	}
+
+	private void OnBtnStartPressed()
+	{
+		
+		Error result = GetTree().ChangeSceneToFile("res://Scenes/Forms/FormsProfessor.tscn");
+
+		if (result != Error.Ok)
+		{
+			GD.Print("Erro ao carrergr a cena: " + result);
+		}
+	}
+
+	private async void OnBtnEnterPressed()
+	{
+		try
+		{
+			await AlunoService.enterGame();
+			GD.Print("Entrou");
+		}
+		catch (Exception e)
+		{
+			GD.Print(e.Message);
+			throw;
+		}
+		
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		
 	}
 }

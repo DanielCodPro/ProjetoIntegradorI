@@ -1,47 +1,8 @@
 [gd_scene format=3 uid="uid://crc51eppbcbni"]
 
-[ext_resource type="Texture2D" uid="uid://bp34qwirevo1a" path="res://Assets/Background/CachoeiraMontanha_0.png" id="1_4kb28"]
-[ext_resource type="Script" uid="uid://pkq0r5tt0o36" path="res://Scripts/InitialScene.cs" id="1_wyath"]
-[ext_resource type="Texture2D" uid="uid://bf6vv04curr1k" path="res://Assets/Background/CachoeiraMontanha_1.png" id="2_wyath"]
-[ext_resource type="Texture2D" uid="uid://blg3xohrv2oph" path="res://Assets/Background/CachoeiraMontanha_2.png" id="3_t7kt1"]
-[ext_resource type="Texture2D" uid="uid://4u3s3btqy8pv" path="res://Assets/Background/CachoeiraMontanha_3.png" id="4_5w8kq"]
-[ext_resource type="Texture2D" uid="uid://c48wfnfr2hf8e" path="res://Assets/Background/CachoeiraMontanha_4.png" id="5_b76gm"]
-[ext_resource type="Texture2D" uid="uid://c22yjwf0gi37t" path="res://Assets/Background/CachoeiraMontanha_5.png" id="6_cnqdl"]
-[ext_resource type="Texture2D" uid="uid://be8majposmelc" path="res://Assets/Background/CachoeiraMontanha_6.png" id="7_1rrj7"]
-[ext_resource type="Texture2D" uid="uid://bl4tcr275k464" path="res://Assets/Background/CachoeiraMontanha_7.png" id="8_xgool"]
-[ext_resource type="AudioStream" uid="uid://dmcih8fodumuo" path="res://Assets/Musics/InitialMenu/AdhesiveWombat - Night Shade.mp3" id="10_t7kt1"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_005ff"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_4kb28")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_wyath")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_t7kt1")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_5w8kq")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_b76gm")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_cnqdl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_1rrj7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_xgool")
-}],
-"loop": true,
-"name": &"default",
-"speed": 12.0
-}]
+[ext_resource type="Script" uid="uid://bgbrlwclpak18" path="res://Scripts/InitialScene.cs" id="1_t7kt1"]
+[ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="2_ockli"]
+[ext_resource type="PackedScene" uid="uid://ietdf4bl0i6f" path="res://Scenes/Music/music_controll.tscn" id="3_i56i6"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wyath"]
 font_size = 56
@@ -63,26 +24,24 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 shadow_size = 2
 
-[node name="InitialScene" type="MarginContainer" unique_id=1515314751]
+[node name="InitialScene" type="Control" unique_id=1624569646]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_top = 23
-script = ExtResource("1_wyath")
+script = ExtResource("1_t7kt1")
 
-[node name="BackgroundInicial" type="AnimatedSprite2D" parent="." unique_id=254432943]
-modulate = Color(0.3665946, 0.3665946, 0.36659458, 1)
-self_modulate = Color(0.9515795, 0.95157963, 0.9515795, 1)
-position = Vector2(576.0001, 323.75)
-scale = Vector2(1.0000001, 1.1544642)
-sprite_frames = SubResource("SpriteFrames_005ff")
-frame = 7
-frame_progress = 0.4374605
+[node name="InicialBackgroundNode" parent="." unique_id=864878345 instance=ExtResource("2_ockli")]
+layout_mode = 1
 
 [node name="Label" type="Label" parent="." unique_id=2109392080]
-layout_mode = 2
+layout_mode = 0
+offset_left = 280.0
+offset_top = 23.0
+offset_right = 872.0
+offset_bottom = 100.0
 size_flags_horizontal = 4
 size_flags_vertical = 0
 text = "HACKOON GAME HUB"
@@ -91,7 +50,11 @@ horizontal_alignment = 1
 
 [node name="PanelContainer" type="PanelContainer" parent="." unique_id=1276313470]
 self_modulate = Color(0.5411765, 0.5254902, 0.5294118, 0.6156863)
-layout_mode = 2
+layout_mode = 0
+offset_left = 418.0
+offset_top = 242.0
+offset_right = 734.0
+offset_bottom = 427.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_wyath")
@@ -103,17 +66,18 @@ size_flags_vertical = 4
 theme_override_constants/separation = 33
 alignment = 1
 
-[node name="Button" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1337129972]
+[node name="StartButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1337129972]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "INICIAR JOGO"
 
-[node name="Button2" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1625983789]
+[node name="EnterButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1625983789]
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "ENTRAR NO JOGO"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=748139748]
-stream = ExtResource("10_t7kt1")
-volume_db = -20.0
-autoplay = true
+[node name="MusicControll" parent="." unique_id=665168816 instance=ExtResource("3_i56i6")]
+layout_mode = 1
+offset_top = -124.0
+offset_bottom = -124.0
+scale = Vector2(0.18, 0.18)

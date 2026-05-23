@@ -1,5 +1,6 @@
 using Godot;
 using System;
+/*
 using Models;
 using Repository.Postgress;
 
@@ -47,3 +48,4 @@ public partial class Salas : Control
 		GetTree().ChangeSceneToFile("res://scenes/MenuJogos.tscn");
 	}
 }
+*/
