@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://t37iedxbmjs"]
+
+[ext_resource type="AudioStream" uid="uid://dmcih8fodumuo" path="res://Assets/Musics/InitialMenu/AdhesiveWombat - Night Shade.mp3" id="1_1x8co"]
+[ext_resource type="Script" uid="uid://b15wvefespjyl" path="res://Scripts/Music/MusicScene.cs" id="2_m2snt"]
+
+[node name="Music8bit" type="AudioStreamPlayer" unique_id=534962635]
+stream = ExtResource("1_1x8co")
+volume_db = -20.0
+script = ExtResource("2_m2snt")

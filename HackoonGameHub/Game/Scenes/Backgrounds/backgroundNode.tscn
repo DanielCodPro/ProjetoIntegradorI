@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://p4vbm24vx8pn"]
+
+[ext_resource type="Texture2D" uid="uid://bp34qwirevo1a" path="res://Assets/Background/CachoeiraMontanha_0.png" id="1_by32n"]
+[ext_resource type="Texture2D" uid="uid://bf6vv04curr1k" path="res://Assets/Background/CachoeiraMontanha_1.png" id="2_of5ym"]
+[ext_resource type="Texture2D" uid="uid://blg3xohrv2oph" path="res://Assets/Background/CachoeiraMontanha_2.png" id="3_igsb1"]
+[ext_resource type="Texture2D" uid="uid://4u3s3btqy8pv" path="res://Assets/Background/CachoeiraMontanha_3.png" id="4_j2e2v"]
+[ext_resource type="Texture2D" uid="uid://c48wfnfr2hf8e" path="res://Assets/Background/CachoeiraMontanha_4.png" id="5_fmo2o"]
+[ext_resource type="Texture2D" uid="uid://c22yjwf0gi37t" path="res://Assets/Background/CachoeiraMontanha_5.png" id="6_wehma"]
+[ext_resource type="Texture2D" uid="uid://be8majposmelc" path="res://Assets/Background/CachoeiraMontanha_6.png" id="7_1d8sx"]
+[ext_resource type="Texture2D" uid="uid://bl4tcr275k464" path="res://Assets/Background/CachoeiraMontanha_7.png" id="8_2s35t"]
+[ext_resource type="Script" uid="uid://c1lxoouxfyk0y" path="res://Scripts/Backgrounds/BackgroundInicial.cs" id="9_of5ym"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nfbmf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_by32n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_of5ym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_igsb1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j2e2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fmo2o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_wehma")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1d8sx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2s35t")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="InicialBackground" type="Control" unique_id=1272133862]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundInicial" type="AnimatedSprite2D" parent="." unique_id=1311385819]
+modulate = Color(0.3647059, 0.3647059, 0.3647059, 1)
+position = Vector2(575.99994, 323.5)
+scale = Vector2(0.99999994, 1.1553571)
+sprite_frames = SubResource("SpriteFrames_nfbmf")
+script = ExtResource("9_of5ym")

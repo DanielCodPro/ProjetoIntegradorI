@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://ietdf4bl0i6f"]
+
+[ext_resource type="Texture2D" uid="uid://mp6t8jvncdf" path="res://Assets/Icons/musica.png" id="1_2mtgn"]
+[ext_resource type="Script" uid="uid://ycdkkk35ke3" path="res://Scripts/ButtonScripts/MusicControll.cs" id="1_of7jo"]
+[ext_resource type="Texture2D" uid="uid://b02xgbqv3wdtw" path="res://Assets/Icons/no_musica.png" id="3_esbyw"]
+
+[node name="MusicControll" type="Control" unique_id=665168816]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_of7jo")
+music = ExtResource("1_2mtgn")
+noMusic = ExtResource("3_esbyw")
+musicAudio = null
+
+[node name="MusicButton" type="Button" parent="." unique_id=1731444020]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -260.0
+offset_right = 260.0
+offset_bottom = 260.0
+grow_horizontal = 2
+grow_vertical = 2
+icon = ExtResource("1_2mtgn")
+flat = true

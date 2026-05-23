@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://crc51eppbcbni"]
+
+[ext_resource type="Script" uid="uid://bgbrlwclpak18" path="res://Scripts/InitialScene.cs" id="1_t7kt1"]
+[ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="2_ockli"]
+[ext_resource type="PackedScene" uid="uid://ietdf4bl0i6f" path="res://Scenes/Music/music_controll.tscn" id="3_i56i6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_wyath"]
+font_size = 56
+font_color = Color(1, 1, 0, 1)
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.2627451)
+shadow_offset = Vector2(4.285, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wyath"]
+bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+border_width_left = 26
+border_width_top = 26
+border_width_right = 26
+border_width_bottom = 26
+border_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 2
+
+[node name="InitialScene" type="Control" unique_id=1624569646]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t7kt1")
+
+[node name="InicialBackgroundNode" parent="." unique_id=864878345 instance=ExtResource("2_ockli")]
+layout_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=2109392080]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 23.0
+offset_right = 872.0
+offset_bottom = 100.0
+size_flags_horizontal = 4
+size_flags_vertical = 0
+text = "HACKOON GAME HUB"
+label_settings = SubResource("LabelSettings_wyath")
+horizontal_alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1276313470]
+self_modulate = Color(0.5411765, 0.5254902, 0.5294118, 0.6156863)
+layout_mode = 0
+offset_left = 418.0
+offset_top = 242.0
+offset_right = 734.0
+offset_bottom = 427.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_wyath")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1513776413]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 33
+alignment = 1
+
+[node name="StartButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1337129972]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "INICIAR JOGO"
+
+[node name="EnterButton" type="Button" parent="PanelContainer/VBoxContainer" unique_id=1625983789]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "ENTRAR NO JOGO"
+
+[node name="MusicControll" parent="." unique_id=665168816 instance=ExtResource("3_i56i6")]
+layout_mode = 1
+offset_top = -124.0
+offset_bottom = -124.0
+scale = Vector2(0.18, 0.18)

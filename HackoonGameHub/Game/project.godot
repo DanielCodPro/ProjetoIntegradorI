@@ -11,13 +11,22 @@ config_version=5
 [application]
 
 config/name="game"
-run/main_scene="uid://da5xa0ttx1tmf"
+run/main_scene="uid://crc51eppbcbni"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MusicScene="*uid://t37iedxbmjs"
+SessionManager="*uid://c38l5y3a4luqs"
+
+[display]
+
+window/stretch/mode="canvas_items"
+
 [dotnet]
 
-project/assembly_name="game"
+project/assembly_name="Game"
 
 [physics]
 
@@ -26,5 +35,3 @@ project/assembly_name="game"
 [rendering]
 
 rendering_device/driver.windows="d3d12"
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

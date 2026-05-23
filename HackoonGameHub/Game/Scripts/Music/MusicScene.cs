@@ -1,18 +1,30 @@
 using Godot;
 using System;
-using Repository.Postgress;
 
-public partial class TeacherControl : Control
+public partial class MusicScene : AudioStreamPlayer
 {
+	
+	public static bool sinal = false;
+	public static bool Tocando = true;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		
+		Play();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+		if (sinal)
+		{
+			if (Tocando)
+			{
+				StreamPaused = false;
+			}
+			else
+			{
+				StreamPaused = true;
+			}
+		}
 	}
 }

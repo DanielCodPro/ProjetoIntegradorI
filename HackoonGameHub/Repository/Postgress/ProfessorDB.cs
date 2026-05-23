@@ -55,7 +55,7 @@ public class ProfessorDB
                 reader.GetInt32(0),
                 reader.GetString(1),
                 reader.GetString(2),
-                reader.GetDateTime(3)
+                reader.GetDateTime(4)
             );
             lista.Add(p);
         }
@@ -66,7 +66,7 @@ public class ProfessorDB
     {
         DB.testConnection();
 
-        await using var cmd = DB.dataSource.CreateCommand("SELECT id, name, email, created_at FROM professores WHERE email = $1");
+        await using var cmd = DB.dataSource.CreateCommand("SELECT id, name, email, password ,created_at FROM professores WHERE email = $1");
         cmd.Parameters.AddWithValue(email);
         await using var reader = await cmd.ExecuteReaderAsync();
 
@@ -76,10 +76,13 @@ public class ProfessorDB
                 reader.GetInt32(0),
                 reader.GetString(1),
                 reader.GetString(2),
-                reader.GetDateTime(3)
-            );
+                reader.GetDateTime(4)
+            )
+            {
+                password = reader.GetString(3)
+            };
         }
-        throw new ResourceNotFoundException("Nenhum professor com este email");
+        throw new ResourceNotFoundException("Email e/ou Senha Inválidos");
     }
 
     public static async Task<bool> ProfessorExists(string email)
