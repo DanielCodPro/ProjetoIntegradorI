@@ -3,6 +3,36 @@
 [ext_resource type="Script" uid="uid://vj6uxrr44gy0" path="res://Scripts/SceneControlls/FormsProfessor.cs" id="1_sod4u"]
 [ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="1_vhs78"]
 [ext_resource type="PackedScene" uid="uid://ietdf4bl0i6f" path="res://Scenes/Music/music_controll.tscn" id="2_lrydk"]
+[ext_resource type="Texture2D" uid="uid://xccwqa2yj3o1" path="res://Assets/LoadingPacMan/1.png" id="4_ydjlr"]
+[ext_resource type="Texture2D" uid="uid://6ughrrgs6jnn" path="res://Assets/LoadingPacMan/2.png" id="5_oikks"]
+[ext_resource type="Texture2D" uid="uid://c40lmboe716tj" path="res://Assets/LoadingPacMan/3.png" id="6_hgcn4"]
+[ext_resource type="Texture2D" uid="uid://ln316bqtjiae" path="res://Assets/LoadingPacMan/4.png" id="7_7t6s3"]
+[ext_resource type="Texture2D" uid="uid://dh52vg2p1n53s" path="res://Assets/LoadingPacMan/5.png" id="8_2cdtq"]
+[ext_resource type="Texture2D" uid="uid://cq2ppsxyfiibe" path="res://Assets/LoadingPacMan/6.png" id="9_df8qc"]
+[ext_resource type="Texture2D" uid="uid://b4xt5c7fj4aql" path="res://Assets/LoadingPacMan/7.png" id="10_8gq2j"]
+[ext_resource type="Texture2D" uid="uid://b40nsaysq3pj7" path="res://Assets/LoadingPacMan/8.png" id="11_ojewk"]
+[ext_resource type="Texture2D" uid="uid://lwhxjm83rtq2" path="res://Assets/LoadingPacMan/9.png" id="12_cquvp"]
+[ext_resource type="Texture2D" uid="uid://c1i60hnhssy5i" path="res://Assets/LoadingPacMan/10.png" id="13_rvovj"]
+[ext_resource type="Texture2D" uid="uid://nt07ondb375q" path="res://Assets/LoadingPacMan/11.png" id="14_twm2b"]
+[ext_resource type="Texture2D" uid="uid://b63up8ryxbl17" path="res://Assets/LoadingPacMan/12.png" id="15_8dumb"]
+[ext_resource type="Texture2D" uid="uid://bwuhq53cvpr0s" path="res://Assets/LoadingPacMan/13.png" id="16_8ybjk"]
+[ext_resource type="Texture2D" uid="uid://b5sgoeeha6nuk" path="res://Assets/LoadingPacMan/14.png" id="17_ma6u5"]
+[ext_resource type="Texture2D" uid="uid://cu0k5gp0sab16" path="res://Assets/LoadingPacMan/15.png" id="18_j77up"]
+[ext_resource type="Texture2D" uid="uid://dmjs2uj88inud" path="res://Assets/LoadingPacMan/16.png" id="19_tnkge"]
+[ext_resource type="Texture2D" uid="uid://bc7unh8078iwp" path="res://Assets/LoadingPacMan/17.png" id="20_4nr5h"]
+[ext_resource type="Texture2D" uid="uid://btn85pcswal1r" path="res://Assets/LoadingPacMan/18.png" id="21_8m02x"]
+[ext_resource type="Texture2D" uid="uid://bajlpb14ki3iw" path="res://Assets/LoadingPacMan/19.png" id="22_6wtps"]
+[ext_resource type="Texture2D" uid="uid://6l88rcppvxhr" path="res://Assets/LoadingPacMan/20.png" id="23_6ovp8"]
+[ext_resource type="Texture2D" uid="uid://bfx0jb8anvyeo" path="res://Assets/LoadingPacMan/21.png" id="24_tofyf"]
+[ext_resource type="Texture2D" uid="uid://7o0wh1vgncab" path="res://Assets/LoadingPacMan/22.png" id="25_1s2xa"]
+[ext_resource type="Texture2D" uid="uid://dwvw1pbqo0s37" path="res://Assets/LoadingPacMan/23.png" id="26_ft164"]
+[ext_resource type="Texture2D" uid="uid://bedp8teul3xv3" path="res://Assets/LoadingPacMan/24.png" id="27_u080o"]
+[ext_resource type="Texture2D" uid="uid://d0vmfcr1egvhj" path="res://Assets/LoadingPacMan/25.png" id="28_h4cky"]
+[ext_resource type="Texture2D" uid="uid://ck4a7lafrdgw4" path="res://Assets/LoadingPacMan/26.png" id="29_eflhb"]
+[ext_resource type="Texture2D" uid="uid://cyirq327hi7g3" path="res://Assets/LoadingPacMan/27.png" id="30_pfkje"]
+[ext_resource type="Texture2D" uid="uid://bq6465i56xeg8" path="res://Assets/LoadingPacMan/28.png" id="31_ivar7"]
+[ext_resource type="Texture2D" uid="uid://brdgk7typdgww" path="res://Assets/LoadingPacMan/29.png" id="32_x2hl7"]
+[ext_resource type="Texture2D" uid="uid://bf5k0cputo66i" path="res://Assets/LoadingPacMan/30.png" id="33_2bqkg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5i05s"]
 bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
@@ -15,6 +45,104 @@ corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4odks"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ydjlr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_oikks")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hgcn4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7t6s3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_2cdtq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_df8qc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_8gq2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ojewk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_cquvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rvovj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_twm2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8dumb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_8ybjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_ma6u5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_j77up")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_tnkge")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_4nr5h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_8m02x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_6wtps")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_6ovp8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_tofyf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_1s2xa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ft164")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_u080o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_h4cky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_eflhb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_pfkje")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ivar7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_x2hl7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_2bqkg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
 
 [node name="Control" type="Control" unique_id=1962017348]
 layout_mode = 3
@@ -99,6 +227,21 @@ text = "CADASTRAR"
 
 [node name="MusicControll" parent="." unique_id=665168816 instance=ExtResource("2_lrydk")]
 layout_mode = 1
-offset_top = -189.0
-offset_bottom = -189.0
+offset_top = -208.0
+offset_bottom = -208.0
 scale = Vector2(0.18, 0.18)
+
+[node name="Carregamento" type="AnimatedSprite2D" parent="." unique_id=1459233376]
+position = Vector2(580, 323.09375)
+scale = Vector2(1.31125, 1.4990625)
+sprite_frames = SubResource("SpriteFrames_4odks")
+frame_progress = 0.93679416
+
+[node name="returnLabel" type="Label" parent="." unique_id=225593142]
+layout_mode = 0
+offset_left = 450.0
+offset_top = 474.0
+offset_right = 698.0
+offset_bottom = 497.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+horizontal_alignment = 1

@@ -97,4 +97,21 @@ public class SalaDB
         await cmd.ExecuteNonQueryAsync();
         
     }
+
+    public static async Task Delete(int id)
+    {
+        DB.testConnection();
+
+        Sala sala = await Read(id);
+
+        if (sala == null)
+        {
+            throw new ResourceNotFoundException($"Sala com ID {id} not found.");
+        }
+        
+        await using var cmd = DB.dataSource.CreateCommand("delete from salas where id = $1");
+        cmd.Parameters.AddWithValue(id);
+        await cmd.ExecuteNonQueryAsync();
+        
+    }
 }

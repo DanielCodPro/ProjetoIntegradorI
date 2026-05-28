@@ -10,19 +10,19 @@ public class DB
     public static bool conectado = false;
     
     //Funcão deve rodar apenas uma vez ao inciar o game e TEM QUE DAR CERTO
-    public static async Task Connect(string ipServidor = "127.0.0.1")
+    public static async Task<string> Connect(string ipServidor = "127.0.0.1")
     {
         if (conectado)
         {
-            return;
+            return "Já Conectado";
         }
         
             //Inicia Database Postgres Portable (Somente Windows)
             isLocal(ipServidor, StartDatabase);//Somente Ip local roda
+
+            
         
-        
-        
-        var connectionString = $"Host={ipServidor};Port=5432;Username=postgres;Database=postgres;Password="; // login do banco e local doo banco na rede
+        var connectionString = $"Host={ipServidor};Port=5432;Username=postgres;Database=postgres;Password"; // login do banco e local doo banco na rede
         dataSource = NpgsqlDataSource.Create(connectionString); // Inicializa a conexão
 
         int tentativas = 0;
@@ -47,6 +47,8 @@ public class DB
                 await Task.Delay(1000);
             }
         }
+
+        return "Conectado ao Banco!";
     }
     //Testa se conexão Existe
     public  static void testConnection()

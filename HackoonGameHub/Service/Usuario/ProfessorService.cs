@@ -29,9 +29,9 @@ public class ProfessorService
             return professor;
     }
     
-    public static async Task StartGameAsync()
+    public static async Task<string> StartGameAsync()
     {
-        await DB.Connect();
+        string r = await DB.Connect();
 
         var pacoteServidor = new NetworkPacket{
             Tipo = "DESCOBERTA_SERVIDOR",
@@ -45,5 +45,7 @@ public class ProfessorService
                 await Task.Delay(1000);
             }
         });
+
+        return r;
     }
 }
