@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bt2cd3udly2rm" path="res://Scripts/SceneControlls/FormsSalas.cs" id="1_irn2i"]
 [ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="1_jy6oc"]
 [ext_resource type="PackedScene" uid="uid://ietdf4bl0i6f" path="res://Scenes/Music/music_controll.tscn" id="3_tsub6"]
+[ext_resource type="PackedScene" uid="uid://cw48ptoohpj3c" path="res://Scenes/ReturnScene.tscn" id="4_rlai3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jy6oc"]
 bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
@@ -64,7 +65,7 @@ offset_right = 113.0
 offset_bottom = 85.0
 grow_horizontal = 2
 theme_override_font_sizes/font_size = 33
-text = "Olá, professor"
+text = "Olá, professor "
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1068774209]
 layout_mode = 1
@@ -105,9 +106,19 @@ text = "Descrição Sala:"
 layout_mode = 2
 placeholder_text = "Ex: Sala Boa"
 
-[node name="salaButton" type="Button" parent="HBoxContainer/PanelFormsSalas/VBoxContainer" unique_id=23297950]
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/PanelFormsSalas/VBoxContainer" unique_id=990676005]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="salaButton" type="Button" parent="HBoxContainer/PanelFormsSalas/VBoxContainer/HBoxContainer" unique_id=23297950]
+layout_mode = 2
+size_flags_horizontal = 4
 text = "SALVAR"
+
+[node name="cancelarButton" type="Button" parent="HBoxContainer/PanelFormsSalas/VBoxContainer/HBoxContainer" unique_id=1672105429]
+layout_mode = 2
+text = "CANCELAR"
 
 [node name="PanelSalas" type="PanelContainer" parent="HBoxContainer" unique_id=756804143]
 layout_mode = 2
@@ -122,3 +133,6 @@ layout_mode = 1
 offset_top = -149.0
 offset_bottom = -149.0
 scale = Vector2(0.18, 0.18)
+
+[node name="Control" parent="." unique_id=1934765190 instance=ExtResource("4_rlai3")]
+visible = false

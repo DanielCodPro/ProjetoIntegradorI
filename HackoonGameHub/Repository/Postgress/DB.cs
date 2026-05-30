@@ -18,11 +18,11 @@ public class DB
         }
         
             //Inicia Database Postgres Portable (Somente Windows)
-            isLocal(ipServidor, StartDatabase);//Somente Ip local roda
+            //isLocal(ipServidor, StartDatabase);//Somente Ip local roda
 
             
         
-        var connectionString = $"Host={ipServidor};Port=5432;Username=postgres;Database=postgres;Password"; // login do banco e local doo banco na rede
+        var connectionString = $"Host={ipServidor};Port=5432;Username=postgres;Database=postgres;Password=root1234"; // login do banco e local doo banco na rede
         dataSource = NpgsqlDataSource.Create(connectionString); // Inicializa a conexão
 
         int tentativas = 0;

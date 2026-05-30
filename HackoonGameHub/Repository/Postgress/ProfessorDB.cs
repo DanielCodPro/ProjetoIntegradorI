@@ -84,6 +84,28 @@ public class ProfessorDB
         }
         throw new ResourceNotFoundException("Email e/ou Senha Inválidos");
     }
+    public static async Task<Professor> GetProfessorById(int id)
+    {
+        DB.testConnection();
+
+        await using var cmd = DB.dataSource.CreateCommand("SELECT id, name, email, password ,created_at FROM professores WHERE id = $1");
+        cmd.Parameters.AddWithValue(id);
+        await using var reader = await cmd.ExecuteReaderAsync();
+
+        if (await reader.ReadAsync())
+        {
+            return new Professor(
+                reader.GetInt32(0),
+                reader.GetString(1),
+                reader.GetString(2),
+                reader.GetDateTime(4)
+            )
+            {
+                password = reader.GetString(3)
+            };
+        }
+        throw new ResourceNotFoundException("Professor");
+    }
 
     public static async Task<bool> ProfessorExists(string email)
     {
@@ -93,5 +115,19 @@ public class ProfessorDB
         cmd.Parameters.AddWithValue(email);
         await using var reader = await cmd.ExecuteReaderAsync();
         return reader.HasRows;
+    }
+
+    public static async Task Update(Professor professor, int id)
+    {
+        DB.testConnection();
+
+        await using var cmd = DB.dataSource.CreateCommand("UPDATE professores  SET name = $1, email = $2, password = $3 WHERE id = $4");
+        cmd.Parameters.AddWithValue(professor.name);
+        cmd.Parameters.AddWithValue(professor.email);
+        cmd.Parameters.AddWithValue(professor.password);
+        cmd.Parameters.AddWithValue(id);
+
+        await cmd.ExecuteNonQueryAsync();
+        
     }
 }

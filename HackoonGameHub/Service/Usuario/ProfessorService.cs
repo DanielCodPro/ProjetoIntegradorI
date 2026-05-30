@@ -31,7 +31,7 @@ public class ProfessorService
     
     public static async Task<string> StartGameAsync()
     {
-        string r = await DB.Connect();
+        string resultado = await DB.Connect();
 
         var pacoteServidor = new NetworkPacket{
             Tipo = "DESCOBERTA_SERVIDOR",
@@ -46,6 +46,46 @@ public class ProfessorService
             }
         });
 
-        return r;
+        return resultado;
     }
+
+    public static async Task<Professor> Update(Professor professor)
+    {
+        if (professor.id < 0)
+        {
+            throw new ResourceNotFoundException("Usuario não logaddo");
+        }
+        
+        Professor oldProfessor = await ProfessorDB.GetProfessorById(professor.id);
+        
+        if (oldProfessor == null)
+        {
+            throw new ResourceNotFoundException("Não existe Cadastro No banco");
+        }
+
+        if (string.IsNullOrEmpty(professor.email))
+        {
+            professor.email = oldProfessor.email;
+        }
+
+        if (string.IsNullOrEmpty(professor.email))
+        {
+            professor.email = oldProfessor.email;
+        }
+
+        if (string.IsNullOrEmpty(professor.password))
+        {
+            professor.password = oldProfessor.password;
+        }
+        else
+        {
+            professor.password = SecurityService.GerarHaskSenha(professor.password);
+        }
+        
+        await ProfessorDB.Update(professor, professor.id);
+
+        return professor;
+
+    }
+    
 }

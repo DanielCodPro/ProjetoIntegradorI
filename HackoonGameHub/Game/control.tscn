@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://c43ha5u2qdvpf"]
+
+[ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="1_0fbet"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0fbet"]
+bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Control" type="Window" unique_id=737391645]
+oversampling_override = 1.0
+initial_position = 1
+size = Vector2i(900, 520)
+
+[node name="InicialBackground" parent="." unique_id=1272133862 instance=ExtResource("1_0fbet")]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=755099621]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0fbet")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=117388033]
+layout_mode = 2

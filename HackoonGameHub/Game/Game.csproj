@@ -5,6 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Scripts\PopupScripts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Service\Service.csproj" />
