@@ -10,10 +10,7 @@ public class SalaDB
     {
         DB.testConnection();
 
-        if (sala.name == null)
-        {
-            throw new InvalidParameterException("Faltam Argumentos para criar sala!");
-        }
+       
         
         await using var cmd = 
         DB.dataSource.CreateCommand(@"INSERT INTO salas (name, descricao, created_at) values ($1, $2, $3) returning id;");
@@ -83,17 +80,25 @@ public class SalaDB
     public static async Task Update(Sala sala, int id_sala)
     {
         DB.testConnection();
-
-        if (sala.name == null)
-        {
-            throw new InvalidParameterException("Faltam Argumentos para atualizar sala!");
-        }
         
         await using var cmd = DB.dataSource.CreateCommand("update salas set name = $1, descricao = $2 where id = $3");
         cmd.Parameters.AddWithValue(sala.name);
-        cmd.Parameters.AddWithValue(sala.descricao ?? (object)DBNull.Value);
+        cmd.Parameters.AddWithValue(sala.descricao);
         cmd.Parameters.AddWithValue(id_sala);
         
+        await cmd.ExecuteNonQueryAsync();
+        
+    }
+
+    public static async Task Delete(int id)
+    {
+        DB.testConnection();
+
+        Sala sala = await Read(id);
+
+       
+        await using var cmd = DB.dataSource.CreateCommand("delete from salas where id = $1");
+        cmd.Parameters.AddWithValue(id);
         await cmd.ExecuteNonQueryAsync();
         
     }

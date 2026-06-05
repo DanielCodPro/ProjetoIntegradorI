@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://cw48ptoohpj3c"]
+
+[ext_resource type="Script" uid="uid://blksj2dqsrdkd" path="res://Scripts/PopupScripts/ReturnScene.cs" id="1_226kj"]
+[ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="2_ty1pr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bvr0d"]
+bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Window" type="Window" unique_id=2060578607]
+oversampling_override = 1.0
+title = "IMPORTANTE"
+initial_position = 1
+size = Vector2i(839, 499)
+script = ExtResource("1_226kj")
+
+[node name="InicialBackground" parent="." unique_id=1272133862 instance=ExtResource("2_ty1pr")]
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1549293809]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bvr0d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=1579863157]
+layout_mode = 2
+
+[node name="subtitleLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=99519431]
+layout_mode = 2
+
+[node name="descriptionLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1724399515]
+layout_mode = 2
