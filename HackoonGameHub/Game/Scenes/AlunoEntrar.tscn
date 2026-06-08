@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://btayuus5pejfp"]
+
+[ext_resource type="Script" uid="uid://7g1sfguhpgvk" path="res://Scripts/SceneControlls/AlunoEntrar.cs" id="1_5pdgj"]
+[ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="1_tq0ls"]
+[ext_resource type="PackedScene" uid="uid://ietdf4bl0i6f" path="res://Scenes/Music/music_controll.tscn" id="2_im3t2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_im3t2"]
+bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Control" type="Control" unique_id=2007611136]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5pdgj")
+
+[node name="InicialBackground" parent="." unique_id=1272133862 instance=ExtResource("1_tq0ls")]
+layout_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1517817292]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_im3t2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=2127978702]
+layout_mode = 2
+
+[node name="nomeSalaLabel" type="Label" parent="PanelContainer/VBoxContainer" unique_id=1680473926]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Professor"
+horizontal_alignment = 1
+
+[node name="professorHBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1652809424]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="ipVBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/professorHBoxContainer" unique_id=1517241720]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/professorHBoxContainer/ipVBoxContainer" unique_id=996826466]
+layout_mode = 2
+text = "ENDEREÇO IP"
+
+[node name="middleVBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/professorHBoxContainer" unique_id=1259196326]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/professorHBoxContainer/middleVBoxContainer" unique_id=1767040718]
+layout_mode = 2
+text = "|"
+
+[node name="buttonVBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/professorHBoxContainer" unique_id=1529865291]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/professorHBoxContainer/buttonVBoxContainer" unique_id=668181]
+layout_mode = 2
+text = "BOTÃO"
+
+[node name="MusicControll" parent="." unique_id=665168816 instance=ExtResource("2_im3t2")]
+layout_mode = 1
+offset_top = -86.875
+offset_bottom = -86.875
+scale = Vector2(0.18, 0.18)

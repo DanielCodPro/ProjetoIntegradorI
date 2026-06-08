@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://bjr0j6po5tm3r"]
+
+[ext_resource type="Script" uid="uid://cx2t0wd2p7lse" path="res://Scripts/SceneControlls/LobbyPanel.cs" id="1_w4esw"]
+[ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="1_xyost"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w4esw"]
+bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="Control" type="Control" unique_id=1757547384]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w4esw")
+
+[node name="InicialBackground" parent="." unique_id=1272133862 instance=ExtResource("1_xyost")]
+layout_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1596137362]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w4esw")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=246850597]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1290909604]
+layout_mode = 2
+
+[node name="txtLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=651117329]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Conectado à sala: "
+
+[node name="nomeSalaLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1953334956]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="alunosHBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer" unique_id=1942376454]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="usernameVBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/alunosHBoxContainer" unique_id=1348298756]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/alunosHBoxContainer/usernameVBoxContainer" unique_id=1480376372]
+layout_mode = 2
+text = "USERNAME"
+
+[node name="middleVBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/alunosHBoxContainer" unique_id=128640060]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/alunosHBoxContainer/middleVBoxContainer" unique_id=1682949658]
+layout_mode = 2
+text = "|"
+
+[node name="nomeVBoxContainer" type="VBoxContainer" parent="PanelContainer/VBoxContainer/alunosHBoxContainer" unique_id=1048237003]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/alunosHBoxContainer/nomeVBoxContainer" unique_id=272468503]
+layout_mode = 2
+text = "NAME"

@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://bt3r5lfr5c4lx"]
+
+[ext_resource type="PackedScene" uid="uid://p4vbm24vx8pn" path="res://Scenes/Backgrounds/backgroundNode.tscn" id="1_63avd"]
+[ext_resource type="Script" uid="uid://dc6a827fke7ul" path="res://Scripts/SceneControlls/FormsAlunos.cs" id="1_m3vxr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m3vxr"]
+bg_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.5921569, 0.6039216, 0.58431375, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="AlunoForms" type="Control" unique_id=338835999]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m3vxr")
+
+[node name="InicialBackground" parent="." unique_id=1272133862 instance=ExtResource("1_63avd")]
+layout_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1985414397]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_m3vxr")
+
+[node name="alunosHBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=133637744]
+layout_mode = 2
+
+[node name="nomeVBoxContainer" type="VBoxContainer" parent="PanelContainer/alunosHBoxContainer" unique_id=1510519472]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="PanelContainer/alunosHBoxContainer/nomeVBoxContainer" unique_id=655965120]
+layout_mode = 2
+text = "NOME"
+
+[node name="sobrenomeVBoxContainer" type="VBoxContainer" parent="PanelContainer/alunosHBoxContainer" unique_id=716741632]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="PanelContainer/alunosHBoxContainer/sobrenomeVBoxContainer" unique_id=578534486]
+layout_mode = 2
+text = "| SOBRENOME"

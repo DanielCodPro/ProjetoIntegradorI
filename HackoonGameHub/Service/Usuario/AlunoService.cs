@@ -65,10 +65,15 @@ public class AlunoService
         }
         
     }
-    public static async Task enterGame()
+
+    public static async Task<List<Aluno>> showAll()
+    {
+        return await AlunoDB.Listar();
+    }
+    public static async Task<NetworkPacket> enterGame()
     {
         var ipGame = new TaskCompletionSource<string>();
-
+        NetworkPacket networkPacket = new NetworkPacket();
         Action<string, string> tratarMensagemUDP = null;
         tratarMensagemUDP = (senderIP, jsonRecebido) =>
         {
@@ -77,6 +82,9 @@ public class AlunoService
                 var pacote = JsonSerializer.Deserialize<NetworkPacket>(jsonRecebido);
                 if (pacote != null && pacote.Tipo == "DESCOBERTA_SERVIDOR")
                 {
+                    
+                    networkPacket.Tipo = pacote.Tipo;
+                    networkPacket.DadosJson = jsonRecebido;
                     ipGame.TrySetResult(senderIP);
                     BroadcastUDP.OnMessageReceived -= tratarMensagemUDP;
                 }
@@ -93,9 +101,13 @@ public class AlunoService
         _ = Task.Run(() => BroadcastUDP.StartListeningAsync());
 
         string ipServer = await ipGame.Task;
-
+        
+        networkPacket.senderIP = ipServer;
+        
         BroadcastUDP.StopListening();
         
         await DB.Connect(ipServer);
+        
+        return networkPacket;
     }
 }

@@ -28,19 +28,14 @@ public partial class InitialScene : Control
 		}
 	}
 
-	private async void OnBtnEnterPressed()
+	private void OnBtnEnterPressed()
 	{
-		try
-		{
-			await AlunoService.enterGame();
-			GD.Print("Entrou");
-		}
-		catch (Exception e)
-		{
-			GD.Print(e.Message);
-			throw;
-		}
+		Error result = GetTree().ChangeSceneToFile("res://Scenes/AlunoEntrar.tscn");
 		
+		if (result != Error.Ok)
+		{
+			GD.Print("Erro ao carregar a cena: " + result);
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
