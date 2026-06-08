@@ -6,7 +6,7 @@ using Repository.Postgress;
 
 namespace Service;
 
-public class ProfessorService
+public static class ProfessorService
 {
     public static async void RegisterProfessor(Professor professor)
     {
@@ -28,14 +28,15 @@ public class ProfessorService
 
             return professor;
     }
-    
-    public static async Task<string> StartGameAsync()
-    {
-        string resultado = await DB.Connect();
 
+    public static async Task SendMessage(string message)
+    {
         var pacoteServidor = new NetworkPacket{
             Tipo = "DESCOBERTA_SERVIDOR",
-            DadosJson = JsonSerializer.Serialize(new {Status = "LOBBY_ABERTO"})
+            DadosJson = JsonSerializer.Serialize(new {
+                Status = "LOBBY_ABERTO",
+                Message = message
+            })
         };
         _ = Task.Run(async () =>
         {
@@ -46,6 +47,11 @@ public class ProfessorService
             }
         });
 
+    }
+    public static async Task<string> StartGameAsync()
+    {
+        string resultado = await DB.Connect();
+        
         return resultado;
     }
 

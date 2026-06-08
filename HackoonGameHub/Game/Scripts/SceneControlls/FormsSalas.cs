@@ -171,7 +171,9 @@ public partial class FormsSalas : Control
 	{
 		if (id == 0)
 		{
-			
+			var session = GetNode<SessionManager>("/root/SessionManager");
+			session.sala = sala;
+			Error result = GetTree().ChangeSceneToFile("res://Scenes/LobbyPanel.tscn");
 		}
 		else if (id == 1)
 		{

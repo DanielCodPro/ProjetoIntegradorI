@@ -8,6 +8,7 @@ public partial class SessionManager : Node
 {
     public Usuario usuario { get; set; }
     public List<Usuario> usuariosNaRede { get; set; } = new List<Usuario>();
+    public Sala sala { get; set; }
 
     public override void _Ready()
     {
