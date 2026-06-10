@@ -117,7 +117,26 @@ public class AlunoDB
         }
         return lista;
     }
-
+    public static async Task<Aluno> GetAlunoById(int id)
+    {
+        DB.testConnection();
+        await using var cmd = DB.dataSource.CreateCommand("SELECT (id, username, name, createdAt) FROM alunos WHERE id = $1");
+        cmd.Parameters.AddWithValue(id);
+        await using var reader = await cmd.ExecuteReaderAsync();
+            
+        if (await reader.ReadAsync())
+        {
+            Aluno aluno = new Aluno(
+                reader.GetInt32(0),
+                reader.GetString(1),
+                reader.GetString(2),
+                reader.GetDateTime(3)
+            );
+            return aluno;
+        }
+            
+        throw new ResourceNotFoundException($"Aluno com ID {id} não foi encontrada.");
+    }
     public static async Task<Aluno> GetAlunoByUsername(string username)
     {
         DB.testConnection();
