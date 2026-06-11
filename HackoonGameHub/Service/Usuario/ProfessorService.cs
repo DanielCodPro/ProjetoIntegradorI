@@ -93,5 +93,45 @@ public static class ProfessorService
         return professor;
 
     }
+    public static async Task<NetworkPacket> carregarAlunos()
+    {
+        var tcs = new TaskCompletionSource<NetworkPacket>();
+  
+        Action<string, string> tratarMensagemUDP = null;
+        tratarMensagemUDP = (senderIP, jsonRecebido) =>
+        {
+            try
+            {
+                var pacote = JsonSerializer.Deserialize<NetworkPacket>(jsonRecebido);
+                if (pacote != null && pacote.Tipo == "ENTRADA")
+                {
+                    
+                    var networkPacketResult = new NetworkPacket
+                    {
+                        Tipo = pacote.Tipo,
+                        DadosJson = jsonRecebido
+                    };
+                    BroadcastUDP.OnMessageReceived -= tratarMensagemUDP;
+                    
+                    tcs.TrySetResult(networkPacketResult);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+            
+        };
+        BroadcastUDP.OnMessageReceived += tratarMensagemUDP;
+        
+        _ = Task.Run(() => BroadcastUDP.StartListeningAsync());
+        
+        NetworkPacket networkPacketFinal = await tcs.Task;
+        
+        BroadcastUDP.StopListening();
+        
+        return networkPacketFinal;
+    }
     
 }

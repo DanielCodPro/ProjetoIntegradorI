@@ -71,6 +71,8 @@ public class UsuarioDB
         }
     }
 
+    
+
     // Verifica se um utilizador existe no sistema (seja por username ou por email)
     public static async Task<bool> UserExists(string identificador)
     {

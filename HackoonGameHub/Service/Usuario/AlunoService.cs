@@ -110,4 +110,34 @@ public class AlunoService
         
         return networkPacket;
     }
+    public static async Task<Aluno> Read(int id)
+    {
+        Aluno aluno = await AlunoDB.GetAlunoById(id);
+
+        if (aluno == null)
+        {
+            throw new ResourceNotFoundException($"Nenhuma sala foi encontrada.");
+        }
+        return aluno;
+    }
+    public static async Task SendMyPersona(int id)
+    {
+        var pacoteServidor = new NetworkPacket{
+            Tipo = "ENTRADA",
+            DadosJson = JsonSerializer.Serialize(new {
+                Status = "ENTROU_SERVIDOR",
+                ID = id
+            })
+        };
+        Task.Run(async () =>
+        {
+            while (true)
+            {
+                string jsonParaEnviar = JsonSerializer.Serialize(pacoteServidor);
+                BroadcastUDP.SendBroadcast(jsonParaEnviar);
+                await Task.Delay(1000); // Envia a cada 1 segundo
+            }
+        });
+
+    }
 }

@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bvtwy4yjfe7gd"]
+
+[ext_resource type="Script" uid="uid://bochi1hpem50w" path="res://Scripts/Personagem/LobbyPrincipal.cs" id="1_or4vn"]
+[ext_resource type="PackedScene" uid="uid://2xapy6q32s6t" path="res://Scenes/Personagem/Personagem.tscn" id="2_38idv"]
+
+[node name="LobbyPrincipal" type="Node2D" unique_id=980075694 node_paths=PackedStringArray("multiplayerSpawner")]
+script = ExtResource("1_or4vn")
+playerScene = ExtResource("2_38idv")
+multiplayerSpawner = NodePath("MultiplayerSpawner")
+
+[node name="UI" type="VBoxContainer" parent="." unique_id=1796147774]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="hostButton" type="Button" parent="UI" unique_id=1612620156]
+layout_mode = 2
+text = "HOSPEDAR"
+
+[node name="entrarButton" type="Button" parent="UI" unique_id=508409210]
+layout_mode = 2
+text = "ENTRAR"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="." unique_id=975260951]
+_spawnable_scenes = PackedStringArray("uid://2xapy6q32s6t")
+spawn_path = NodePath("..")
