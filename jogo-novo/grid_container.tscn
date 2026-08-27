@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://dovxrqk5wmfwk"]
+
+[ext_resource type="Script" uid="uid://bw0o8u4wsxbh8" path="res://Icon.cs" id="1_rxlgd"]
+[ext_resource type="Texture2D" uid="uid://on7sr8pi2cid" path="res://ImagensLetras/heart.png" id="2_gwmu0"]
+[ext_resource type="Texture2D" uid="uid://bml6kkoby62rj" path="res://ImagensLetras/Fundo.png" id="2_jb6ug"]
+
+[node name="Node2D" type="Control" unique_id=300988941]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_rxlgd")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1528689593]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -903.0
+offset_top = -444.0
+offset_right = 896.0
+offset_bottom = 457.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jb6ug")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=2049708300]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 4
+theme_override_constants/v_separation = 9
+columns = 4
+
+[node name="ContainerVidas" type="HBoxContainer" parent="." unique_id=1570463345]
+layout_mode = 0
+offset_left = -838.0
+offset_top = -419.0
+offset_right = -622.0
+offset_bottom = -379.0
+mouse_filter = 2
+
+[node name="TextureRect" type="TextureRect" parent="ContainerVidas" unique_id=1570868103]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="ContainerVidas/TextureRect" unique_id=1865202081]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 7.9170003
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_right = -276.68002
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="ContainerVidas" unique_id=1373794370]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="ContainerVidas/TextureRect2" unique_id=1412136746]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="ContainerVidas" unique_id=1841047225]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="ContainerVidas/TextureRect3" unique_id=940904872]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_top = -1.0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="ContainerVidas" unique_id=1948414622]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="ContainerVidas/TextureRect4" unique_id=1248208148]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="ContainerVidas" unique_id=1379480968]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="ContainerVidas/TextureRect5" unique_id=887676798]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 2.8500001
+offset_left = 36.0
+offset_top = 1.0
+offset_right = -19.000008
+offset_bottom = 41.0
+mouse_filter = 2
+texture = ExtResource("2_gwmu0")
+expand_mode = 1
+stretch_mode = 5
