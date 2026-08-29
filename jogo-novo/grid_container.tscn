@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bw0o8u4wsxbh8" path="res://Icon.cs" id="1_rxlgd"]
 [ext_resource type="Texture2D" uid="uid://on7sr8pi2cid" path="res://ImagensLetras/heart.png" id="2_gwmu0"]
-[ext_resource type="Texture2D" uid="uid://bml6kkoby62rj" path="res://ImagensLetras/Fundo.png" id="2_jb6ug"]
+[ext_resource type="Texture2D" uid="uid://docfdhpepd8d2" path="res://ImagensLetras/fundo.jpg" id="2_jb6ug"]
 
 [node name="Node2D" type="Control" unique_id=300988941]
 layout_mode = 3

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bml6kkoby62rj"
-path="res://.godot/imported/Fundo.png-3969fd0b51ed911f5f9046a7296ed1e0.ctex"
+uid="uid://h3i27iuln14x"
+path="res://.godot/imported/MaçaP.jpg-460261b0920bc28db4a7774d9e069361.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ImagensLetras/Fundo.png"
-dest_files=["res://.godot/imported/Fundo.png-3969fd0b51ed911f5f9046a7296ed1e0.ctex"]
+source_file="res://ImagensLetras/MaçaP.jpg"
+dest_files=["res://.godot/imported/MaçaP.jpg-460261b0920bc28db4a7774d9e069361.ctex"]
 
 [params]
 

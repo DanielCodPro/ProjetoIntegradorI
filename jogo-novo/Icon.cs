@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 public partial class Icon : Control
 {
 	private readonly string caminhoVerso = "res://ImagensLetras/alfabeto.jpg";
-	private readonly string caminhoFundo = "res://ImagensLetras/Fundo.jpg"; 
+	private readonly string caminhoFundo = "res://ImagensLetras/fundo.jpg"; 
 
 	private class DadosCarta
 	{
@@ -33,6 +33,10 @@ public partial class Icon : Control
 	private GridContainer grid;
 	private HBoxContainer containerVidas;
 	private Panel gameOverPanel;
+	private Panel vitoriaPanel;
+	private PanelContainer gameOverCard;
+	private PanelContainer vitoriaCard;
+	private static readonly Vector2 TamanhoCardFim = new Vector2(420, 300);
 
 	public override void _Ready()
 	{
@@ -56,6 +60,7 @@ public partial class Icon : Control
 		grid.GrowVertical = GrowDirection.Both;
 
 		CriarTelaGameOver();
+		CriarTelaVitoria();
 		InicializarFases();
 		CarregarFase(faseAtualIndex);
 	}
@@ -88,32 +93,171 @@ public partial class Icon : Control
 		}
 	}
 
+	// Cria um StyleBoxFlat simples com cantos arredondados
+	private StyleBoxFlat CriarEstiloCaixa(Color cor, int raio, int bordaLargura = 0, Color? corBorda = null)
+	{
+		StyleBoxFlat style = new StyleBoxFlat();
+		style.BgColor = cor;
+		style.SetCornerRadiusAll(raio);
+		style.SetContentMarginAll(30);
+		if (bordaLargura > 0)
+		{
+			style.SetBorderWidthAll(bordaLargura);
+			style.BorderColor = corBorda ?? Colors.White;
+		}
+		return style;
+	}
+
+	// Aplica um visual de botão "pílula" com hover/pressed nas cores informadas
+	private void EstilizarBotao(Button btn, Color corBase)
+	{
+		StyleBoxFlat normal = CriarEstiloCaixa(corBase, 16);
+		StyleBoxFlat hover = CriarEstiloCaixa(corBase.Lightened(0.15f), 16);
+		StyleBoxFlat pressed = CriarEstiloCaixa(corBase.Darkened(0.15f), 16);
+
+		normal.ContentMarginTop = 12;
+		normal.ContentMarginBottom = 12;
+		normal.ContentMarginLeft = 26;
+		normal.ContentMarginRight = 26;
+		hover.ContentMarginTop = normal.ContentMarginTop;
+		hover.ContentMarginBottom = normal.ContentMarginBottom;
+		hover.ContentMarginLeft = normal.ContentMarginLeft;
+		hover.ContentMarginRight = normal.ContentMarginRight;
+		pressed.ContentMarginTop = normal.ContentMarginTop;
+		pressed.ContentMarginBottom = normal.ContentMarginBottom;
+		pressed.ContentMarginLeft = normal.ContentMarginLeft;
+		pressed.ContentMarginRight = normal.ContentMarginRight;
+
+		btn.AddThemeStyleboxOverride("normal", normal);
+		btn.AddThemeStyleboxOverride("hover", hover);
+		btn.AddThemeStyleboxOverride("pressed", pressed);
+		btn.AddThemeStyleboxOverride("focus", hover);
+		btn.AddThemeColorOverride("font_color", Colors.White);
+		btn.AddThemeColorOverride("font_hover_color", Colors.White);
+		btn.AddThemeColorOverride("font_pressed_color", Colors.White);
+		btn.AddThemeFontSizeOverride("font_size", 18);
+	}
+
 	private void CriarTelaGameOver()
 	{
 		gameOverPanel = new Panel();
 		gameOverPanel.SetAnchorsPreset(LayoutPreset.FullRect);
 		gameOverPanel.Visible = false;
+		gameOverPanel.MouseFilter = Control.MouseFilterEnum.Stop;
+		// Fundo escurecido semi-transparente cobrindo a tela toda
+		gameOverPanel.AddThemeStyleboxOverride("panel", CriarEstiloCaixa(new Color(0, 0, 0, 0.75f), 0));
+
+		gameOverCard = new PanelContainer();
+		gameOverCard.SetAnchorsPreset(LayoutPreset.Center);
+		gameOverCard.CustomMinimumSize = TamanhoCardFim;
+		gameOverCard.AddThemeStyleboxOverride(
+			"panel",
+			CriarEstiloCaixa(new Color(0.12f, 0.07f, 0.09f, 0.98f), 24, 3, new Color(0.85f, 0.18f, 0.22f))
+		);
 
 		VBoxContainer vbox = new VBoxContainer();
-		vbox.SetAnchorsPreset(LayoutPreset.Center);
+		vbox.Alignment = BoxContainer.AlignmentMode.Center;
+		vbox.AddThemeConstantOverride("separation", 18);
+		vbox.SizeFlagsVertical = Control.SizeFlags.ExpandFill;
+		vbox.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+
+		Label lblEmoji = new Label();
+		lblEmoji.Text = "💔";
+		lblEmoji.HorizontalAlignment = HorizontalAlignment.Center;
+		lblEmoji.AddThemeFontSizeOverride("font_size", 44);
 
 		Label lblGameOver = new Label();
 		lblGameOver.Text = "GAME OVER";
 		lblGameOver.HorizontalAlignment = HorizontalAlignment.Center;
+		lblGameOver.AddThemeFontSizeOverride("font_size", 34);
+		lblGameOver.AddThemeColorOverride("font_color", new Color(0.95f, 0.3f, 0.32f));
+
+		Label lblSub = new Label();
+		lblSub.Text = "Suas vidas acabaram. Que tal tentar de novo?";
+		lblSub.HorizontalAlignment = HorizontalAlignment.Center;
+		lblSub.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+		lblSub.AddThemeFontSizeOverride("font_size", 15);
+		lblSub.AddThemeColorOverride("font_color", new Color(0.82f, 0.78f, 0.78f));
 
 		Button btnReiniciar = new Button();
-		btnReiniciar.Text = "Tentar Novamente";
+		btnReiniciar.Text = "🔄  Tentar Novamente";
+		EstilizarBotao(btnReiniciar, new Color(0.82f, 0.2f, 0.26f));
 		btnReiniciar.Pressed += () =>
 		{
 			gameOverPanel.Visible = false;
 			bloqueado = false;
+			faseAtualIndex = 0;
 			CarregarFase(faseAtualIndex);
 		};
 
+		vbox.AddChild(lblEmoji);
 		vbox.AddChild(lblGameOver);
+		vbox.AddChild(lblSub);
 		vbox.AddChild(btnReiniciar);
-		gameOverPanel.AddChild(vbox);
+		gameOverCard.AddChild(vbox);
+		gameOverPanel.AddChild(gameOverCard);
 		AddChild(gameOverPanel);
+	}
+
+	// Tela de vitória exibida ao concluir todas as fases
+	private void CriarTelaVitoria()
+	{
+		vitoriaPanel = new Panel();
+		vitoriaPanel.SetAnchorsPreset(LayoutPreset.FullRect);
+		vitoriaPanel.Visible = false;
+		vitoriaPanel.MouseFilter = Control.MouseFilterEnum.Stop;
+		vitoriaPanel.AddThemeStyleboxOverride("panel", CriarEstiloCaixa(new Color(0, 0, 0, 0.75f), 0));
+
+		vitoriaCard = new PanelContainer();
+		vitoriaCard.SetAnchorsPreset(LayoutPreset.Center);
+		vitoriaCard.CustomMinimumSize = TamanhoCardFim;
+		vitoriaCard.AddThemeStyleboxOverride(
+			"panel",
+			CriarEstiloCaixa(new Color(0.09f, 0.1f, 0.07f, 0.98f), 24, 3, new Color(1.0f, 0.82f, 0.2f))
+		);
+
+		VBoxContainer vbox = new VBoxContainer();
+		vbox.Alignment = BoxContainer.AlignmentMode.Center;
+		vbox.AddThemeConstantOverride("separation", 18);
+		vbox.SizeFlagsVertical = Control.SizeFlags.ExpandFill;
+		vbox.SizeFlagsHorizontal = Control.SizeFlags.ExpandFill;
+
+		Label lblEmoji = new Label();
+		lblEmoji.Text = "🎉";
+		lblEmoji.HorizontalAlignment = HorizontalAlignment.Center;
+		lblEmoji.AddThemeFontSizeOverride("font_size", 44);
+
+		Label lblVitoria = new Label();
+		lblVitoria.Text = "VITÓRIA!";
+		lblVitoria.HorizontalAlignment = HorizontalAlignment.Center;
+		lblVitoria.AddThemeFontSizeOverride("font_size", 34);
+		lblVitoria.AddThemeColorOverride("font_color", new Color(1.0f, 0.85f, 0.3f));
+
+		Label lblSub = new Label();
+		lblSub.Text = "Parabéns! Você completou todas as fases!";
+		lblSub.HorizontalAlignment = HorizontalAlignment.Center;
+		lblSub.AutowrapMode = TextServer.AutowrapMode.WordSmart;
+		lblSub.AddThemeFontSizeOverride("font_size", 15);
+		lblSub.AddThemeColorOverride("font_color", new Color(0.85f, 0.88f, 0.8f));
+
+		Button btnJogarNovamente = new Button();
+		btnJogarNovamente.Text = "🔁  Jogar Novamente";
+		EstilizarBotao(btnJogarNovamente, new Color(0.25f, 0.6f, 0.32f));
+		btnJogarNovamente.Pressed += () =>
+		{
+			vitoriaPanel.Visible = false;
+			bloqueado = false;
+			faseAtualIndex = 0;
+			CarregarFase(faseAtualIndex);
+		};
+
+		vbox.AddChild(lblEmoji);
+		vbox.AddChild(lblVitoria);
+		vbox.AddChild(lblSub);
+		vbox.AddChild(btnJogarNovamente);
+		vitoriaCard.AddChild(vbox);
+		vitoriaPanel.AddChild(vitoriaCard);
+		AddChild(vitoriaPanel);
 	}
 
 	private void InicializarFases()
@@ -135,7 +279,7 @@ public partial class Icon : Control
 		fases.Add(new DadosFase
 		{
 			NumeroColunas = 4,
-			VidasIniciais = 7,
+			VidasIniciais = 6,
 			TamanhoCarta = new Vector2(180, 135),
 			ImagensFrente = new string[]
 			{
@@ -150,7 +294,7 @@ public partial class Icon : Control
 		fases.Add(new DadosFase
 		{
 			NumeroColunas = 4,
-			VidasIniciais = 4,
+			VidasIniciais = 10,
 			TamanhoCarta = new Vector2(150, 120),
 			ImagensFrente = new string[]
 			{
@@ -158,19 +302,21 @@ public partial class Icon : Control
 				"res://ImagensLetras/banana.jpg",
 				"res://ImagensLetras/laranja.jpg",
 				"res://ImagensLetras/uva.jpg",
-				"res://ImagensLetras/AbacaxiP.png",
+				"res://ImagensLetras/Abacaxi.png",
 				"res://ImagensLetras/goiaba.jpg",
-                "res://ImagensLetras/melancia.jpeg"
+				"res://ImagensLetras/melancia.jpeg",
+				"res://ImagensLetras/pera.png"
 			},
 			ImagensTexto = new string[]
 			{
-				"res://ImagensLetras/MacaP.jpg",
-				"res://ImagensLetras/BananaP.png",
+				"res://ImagensLetras/MaçaP.jpg",
+				"res://ImagensLetras/bananaP.png",
 				"res://ImagensLetras/LaranjaP.png",
 				"res://ImagensLetras/UvaP.jpg",
 				"res://ImagensLetras/AbacaxiP.png",
 				"res://ImagensLetras/GoiabaP.png",
-                "res://ImagensLetras/MelanciaP.png"
+				"res://ImagensLetras/MelanciaP.png",
+				"res://ImagensLetras/PeraP.png"
 			}
 		});
 	}
@@ -180,6 +326,7 @@ public partial class Icon : Control
 		if (indexFase < 0 || indexFase >= fases.Count)
 		{
 			GD.Print("Você completou todas as fases!");
+			ExibirVitoria();
 			return;
 		}
 
@@ -252,6 +399,10 @@ public partial class Icon : Control
 			listaCartas[n] = temp;
 		}
 
+		// Reseta seleção ao gerar uma nova fase
+		cartaSelecionada1 = null;
+		cartaSelecionada2 = null;
+
 		foreach (DadosCarta dados in listaCartas)
 		{
 			TextureButton btn = new TextureButton();
@@ -273,21 +424,33 @@ public partial class Icon : Control
 
 	private async void OnCartaPressed(TextureButton carta)
 	{
-		if (bloqueado || carta == cartaSelecionada1)
+		// Ignora clique se: o jogo está bloqueado, a carta já está desabilitada
+		// (já foi acertada), ou é a mesma carta já selecionada.
+		if (bloqueado || carta.Disabled || carta == cartaSelecionada1 || carta == cartaSelecionada2)
 			return;
 
-		Texture2D imagemFrente = (Texture2D)carta.GetMeta("imagem_frente");
+		// --- CORREÇÃO DE BUG: reserva o "slot" da carta ANTES do await ---
+		// Antes, a carta só era registrada como selecionada depois da animação
+		// terminar. Isso permitia que um clique numa 3ª carta, feito durante a
+		// animação da 2ª, sobrescrevesse "cartaSelecionada2" e deixasse a carta
+		// anterior virada na tela sem nunca ser comparada ou desvirada.
+		bool éSegundaCarta = cartaSelecionada1 != null;
 
-		await AnimarGiro(carta, imagemFrente);
-
-		if (cartaSelecionada1 == null)
+		if (!éSegundaCarta)
 		{
 			cartaSelecionada1 = carta;
 		}
 		else
 		{
 			cartaSelecionada2 = carta;
-			bloqueado = true;
+			bloqueado = true; // bloqueia novos cliques imediatamente
+		}
+
+		Texture2D imagemFrente = (Texture2D)carta.GetMeta("imagem_frente");
+		await AnimarGiro(carta, imagemFrente);
+
+		if (éSegundaCarta)
+		{
 			await VerificarPar();
 			bloqueado = false;
 		}
@@ -340,10 +503,32 @@ public partial class Icon : Control
 		}
 	}
 
+	// Anima a entrada de uma tela final: fundo em fade-in e cartão "estourando" (pop) na tela
+	private void AnimarEntradaTelaFinal(Panel painel, PanelContainer card)
+	{
+		painel.Modulate = new Color(1, 1, 1, 0);
+		painel.Visible = true;
+
+		card.PivotOffset = card.CustomMinimumSize / 2;
+		card.Scale = new Vector2(0.7f, 0.7f);
+
+		Tween tween = CreateTween().SetParallel(true);
+		tween.TweenProperty(painel, "modulate:a", 1.0f, 0.25f);
+		tween.TweenProperty(card, "scale", Vector2.One, 0.35f)
+			.SetTrans(Tween.TransitionType.Back)
+			.SetEase(Tween.EaseType.Out);
+	}
+
 	private void ExibirGameOver()
 	{
 		bloqueado = true;
-		gameOverPanel.Visible = true;
+		AnimarEntradaTelaFinal(gameOverPanel, gameOverCard);
+	}
+
+	private void ExibirVitoria()
+	{
+		bloqueado = true;
+		AnimarEntradaTelaFinal(vitoriaPanel, vitoriaCard);
 	}
 
 	private void VerificarFimDaFase()
